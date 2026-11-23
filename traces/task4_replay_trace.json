@@ -1,0 +1,43 @@
+{
+  "trace_id": "TRACE-379205FEA987",
+  "run_id": "EMAIL-RUN-TASK4-002",
+  "business_key": "INV-4001",
+  "started_at": "2026-11-23T05:57:15.665284Z",
+  "completed_at": "2026-11-23T05:57:15.665313Z",
+  "status": "sent",
+  "events": [
+    {
+      "trace_id": "TRACE-379205FEA987",
+      "run_id": "EMAIL-RUN-TASK4-002",
+      "event": "delivery_started",
+      "timestamp": "2026-11-23T05:57:15.665293Z",
+      "attempt": 0,
+      "details": {
+        "recipient": "customer@example.com",
+        "business_key": "INV-4001",
+        "idempotency_key": "invoice:INV-4001:reminder:v1"
+      }
+    },
+    {
+      "trace_id": "TRACE-379205FEA987",
+      "run_id": "EMAIL-RUN-TASK4-002",
+      "event": "delivery_replayed",
+      "timestamp": "2026-11-23T05:57:15.665309Z",
+      "attempt": 1,
+      "details": {
+        "message_id": "TASK3-MSG-0001"
+      }
+    },
+    {
+      "trace_id": "TRACE-379205FEA987",
+      "run_id": "EMAIL-RUN-TASK4-002",
+      "event": "delivery_completed",
+      "timestamp": "2026-11-23T05:57:15.665317Z",
+      "attempt": 1,
+      "details": {
+        "status": "sent",
+        "error": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "task": "Task 1 - Workflow Contract and State Model",
+  "workflow_states": [
+    "created",
+    "validated",
+    "scheduled",
+    "queued",
+    "running",
+    "sent",
+    "failed",
+    "needs_review",
+    "cancelled"
+  ],
+  "legal_transitions": {
+    "created": {
+      "validate": "validated",
+      "cancel": "cancelled"
+    },
+    "validated": {
+      "schedule": "scheduled",
+      "queue": "queued",
+      "block": "needs_review",
+      "cancel": "cancelled"
+    },
+    "scheduled": {
+      "queue": "queued",
+      "cancel": "cancelled"
+    },
+    "queued": {
+      "start": "running",
+      "cancel": "cancelled"
+    },
+    "running": {
+      "complete": "sent",
+      "fail": "failed",
+      "review": "needs_review"
+    },
+    "failed": {
+      "retry": "queued",
+      "review": "needs_review"
+    },
+    "needs_review": {
+      "retry": "queued",
+      "cancel": "cancelled"
+    },
+    "sent": {},
+    "cancelled": {}
+  },
+  "fixture": {
+    "run_id": "EMAIL-RUN-001",
+    "business_key": "INVOICE-1001",
+    "state": "queued",
+    "tasks": [
+      {
+        "task_id": "TASK-001",
+        "name": "Validate recipient and consent",
+        "owner": "validation_service",
+        "state": "pending",
+        "attempts": 0,
+        "depends_on": [],
+        "result": {}
+      },
+      {
+        "task_id": "TASK-002",
+        "name": "Prepare invoice reminder",
+        "owner": "email_service",
+        "state": "pending",
+        "attempts": 0,
+        "depends_on": [
+          "TASK-001"
+        ],
+        "result": {}
+      }
+    ],
+    "events": [
+      {
+        "event_id": "EVT-0001",
+        "run_id": "EMAIL-RUN-001",
+        "event": "validate",
+        "state": "validated",
+        "timestamp": "2026-11-23T05:37:24.359167Z",
+        "details": {
+          "previous_state": "created",
+          "next_state": "validated"
+        }
+      },
+      {
+        "event_id": "EVT-0002",
+        "run_id": "EMAIL-RUN-001",
+        "event": "queue",
+        "state": "queued",
+        "timestamp": "2026-11-23T05:37:24.359188Z",
+        "details": {
+          "previous_state": "validated",
+          "next_state": "queued"
+        }
+      }
+    ]
+  }
+}

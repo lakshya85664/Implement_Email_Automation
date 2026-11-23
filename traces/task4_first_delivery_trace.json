@@ -1,0 +1,63 @@
+{
+  "trace_id": "TRACE-7B5A43A18993",
+  "run_id": "EMAIL-RUN-TASK4-001",
+  "business_key": "INV-4001",
+  "started_at": "2026-11-23T05:57:15.665034Z",
+  "completed_at": "2026-11-23T05:57:15.665168Z",
+  "status": "sent",
+  "events": [
+    {
+      "trace_id": "TRACE-7B5A43A18993",
+      "run_id": "EMAIL-RUN-TASK4-001",
+      "event": "delivery_started",
+      "timestamp": "2026-11-23T05:57:15.665081Z",
+      "attempt": 0,
+      "details": {
+        "recipient": "customer@example.com",
+        "business_key": "INV-4001",
+        "idempotency_key": "invoice:INV-4001:reminder:v1"
+      }
+    },
+    {
+      "trace_id": "TRACE-7B5A43A18993",
+      "run_id": "EMAIL-RUN-TASK4-001",
+      "event": "transient_failure",
+      "timestamp": "2026-11-23T05:57:15.665121Z",
+      "attempt": 1,
+      "details": {
+        "error": "Simulated temporary provider failure"
+      }
+    },
+    {
+      "trace_id": "TRACE-7B5A43A18993",
+      "run_id": "EMAIL-RUN-TASK4-001",
+      "event": "retry_scheduled",
+      "timestamp": "2026-11-23T05:57:15.665134Z",
+      "attempt": 1,
+      "details": {
+        "next_attempt": 2
+      }
+    },
+    {
+      "trace_id": "TRACE-7B5A43A18993",
+      "run_id": "EMAIL-RUN-TASK4-001",
+      "event": "delivery_succeeded",
+      "timestamp": "2026-11-23T05:57:15.665151Z",
+      "attempt": 2,
+      "details": {
+        "message_id": "TASK3-MSG-0001"
+      }
+    },
+    {
+      "trace_id": "TRACE-7B5A43A18993",
+      "run_id": "EMAIL-RUN-TASK4-001",
+      "event": "delivery_completed",
+      "timestamp": "2026-11-23T05:57:15.665176Z",
+      "attempt": 2,
+      "details": {
+        "status": "sent",
+        "error": "Simulated temporary provider failure"
+      }
+    }
+  ]
+}

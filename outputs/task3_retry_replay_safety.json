@@ -1,0 +1,92 @@
+{
+  "task": "Task 3 - Failure, Retry and Replay Safety",
+  "features": [
+    "Transient provider failure handling",
+    "Permanent provider failure handling",
+    "Bounded retry attempts",
+    "Timeout handling",
+    "Idempotency key validation",
+    "Duplicate delivery prevention",
+    "Safe replay after successful delivery",
+    "Structured retry and delivery events"
+  ],
+  "fixture": {
+    "scenario": "transient_failure_retry_and_safe_replay",
+    "first_result": {
+      "status": "sent",
+      "success": true,
+      "attempts": 2,
+      "max_attempts": 3,
+      "message": {
+        "message_id": "TASK3-MSG-0001",
+        "recipient": "customer@example.com",
+        "subject": "Reminder: Invoice INV-3001",
+        "body": "Your invoice payment reminder.",
+        "status": "sent",
+        "idempotency_key": "invoice:INV-3001:reminder:v1",
+        "replayed": false
+      },
+      "events": [
+        {
+          "event": "transient_failure",
+          "attempt": 1,
+          "error": "Simulated temporary provider failure"
+        },
+        {
+          "event": "retry_scheduled",
+          "attempt": 1,
+          "next_attempt": 2
+        },
+        {
+          "event": "delivery_success",
+          "attempt": 2,
+          "message_id": "TASK3-MSG-0001"
+        }
+      ],
+      "error": null
+    },
+    "replay_result": {
+      "status": "sent",
+      "success": true,
+      "attempts": 1,
+      "max_attempts": 3,
+      "message": {
+        "message_id": "TASK3-MSG-0001",
+        "recipient": "customer@example.com",
+        "subject": "Reminder: Invoice INV-3001",
+        "body": "Your invoice payment reminder.",
+        "status": "sent",
+        "idempotency_key": "invoice:INV-3001:reminder:v1",
+        "replayed": true
+      },
+      "events": [
+        {
+          "event": "replay_success",
+          "attempt": 1,
+          "message_id": "TASK3-MSG-0001"
+        }
+      ],
+      "error": null
+    },
+    "provider_call_count": 2,
+    "provider_message_count": 1,
+    "provider_messages": [
+      {
+        "message_id": "TASK3-MSG-0001",
+        "recipient": "customer@example.com",
+        "subject": "Reminder: Invoice INV-3001",
+        "body": "Your invoice payment reminder.",
+        "status": "sent",
+        "idempotency_key": "invoice:INV-3001:reminder:v1"
+      }
+    ],
+    "duplicate_prevented": true
+  },
+  "verification": {
+    "delivery_succeeded": true,
+    "retry_attempts": 2,
+    "replay_succeeded": true,
+    "provider_message_count": 1,
+    "duplicate_prevented": true
+  }
+}

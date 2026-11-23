@@ -1,0 +1,36 @@
+{
+  "task": "Task 2 - Email Automation Implementation",
+  "features": [
+    "Email template rendering",
+    "Required template variable validation",
+    "Recipient email validation",
+    "Recipient consent validation",
+    "Unsubscribe protection",
+    "Future email scheduling",
+    "Simulated email delivery",
+    "Delivery result tracking"
+  ],
+  "fixture": {
+    "scenario": "successful_invoice_reminder",
+    "result": {
+      "run_id": "EMAIL-RUN-TASK2-001",
+      "recipient": "customer@example.com",
+      "status": "sent",
+      "provider_message_id": "FAKE-MSG-0001",
+      "scheduled_at": null,
+      "sent_at": "2026-11-23T05:42:37.391738Z",
+      "subject": "Reminder: Invoice INV-2001",
+      "reason": "Email accepted by simulated provider"
+    },
+    "provider_message_count": 1,
+    "provider_messages": [
+      {
+        "message_id": "FAKE-MSG-0001",
+        "recipient": "customer@example.com",
+        "subject": "Reminder: Invoice INV-2001",
+        "body": "Hello customer@example.com,\n\nThis is a reminder for invoice INV-2001.\nOutstanding amount: INR 4500.00.\n\nPlease review and complete your payment.\nThank you.",
+        "status": "sent"
+      }
+    ]
+  }
+}

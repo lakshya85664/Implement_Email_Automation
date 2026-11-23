@@ -1,0 +1,27 @@
+{
+  "task": 4,
+  "title": "Integration Boundary and Observability",
+  "scenario": "provider_integration_with_observability",
+  "first_delivery_status": "sent",
+  "replay_delivery_status": "sent",
+  "provider_message_count": 1,
+  "metrics": {
+    "total_runs": 2,
+    "total_provider_attempts": 3,
+    "successful_deliveries": 2,
+    "failed_deliveries": 0,
+    "retries": 1,
+    "replays": 1
+  },
+  "trace_files": [
+    "traces/task4_first_delivery_trace.json",
+    "traces/task4_replay_trace.json"
+  ],
+  "checks": {
+    "provider_integration": true,
+    "structured_tracing": true,
+    "retry_observability": true,
+    "replay_observability": true,
+    "duplicate_delivery_prevented": true
+  }
+}

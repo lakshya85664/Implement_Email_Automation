@@ -1,0 +1,60 @@
+{
+  "assessment": "Topic 17 \u2014 Email Automation",
+  "generated_at": "2026-11-23T06:01:28.582597+00:00",
+  "verified_test_baseline": {
+    "passed": 30,
+    "failed": 0,
+    "command": "python -m pytest -q",
+    "last_verified": "2026-11-23"
+  },
+  "task_status": {
+    "task_1": "implemented_and_tested",
+    "task_2": "implemented_and_tested",
+    "task_3": "implemented_and_tested",
+    "task_4": "implemented_and_tested",
+    "task_5": "documentation_and_evidence_validation"
+  },
+  "file_checks": {
+    "outputs/task1_workflow_contract.json": true,
+    "outputs/task2_email_automation.json": true,
+    "outputs/task3_retry_replay_safety.json": true,
+    "outputs/task4_observability_summary.json": true,
+    "traces/task4_first_delivery_trace.json": true,
+    "traces/task4_replay_trace.json": true,
+    "reports/task4_observability_report.md": true,
+    "diagrams/state_transitions.md": true,
+    "OPERATOR_RUNBOOK.md": true
+  },
+  "missing_files": [],
+  "json_validation": {
+    "outputs/task1_workflow_contract.json": "valid",
+    "outputs/task2_email_automation.json": "valid",
+    "outputs/task3_retry_replay_safety.json": "valid",
+    "outputs/task4_observability_summary.json": "valid",
+    "traces/task4_first_delivery_trace.json": "valid",
+    "traces/task4_replay_trace.json": "valid"
+  },
+  "task4_metrics": {
+    "total_runs": 2,
+    "total_provider_attempts": 3,
+    "successful_deliveries": 2,
+    "failed_deliveries": 0,
+    "retries": 1,
+    "replays": 1
+  },
+  "task4_unique_provider_messages": 1,
+  "validation_checks": {
+    "required_files_present": true,
+    "json_evidence_valid": true,
+    "task4_retry_observed": true,
+    "task4_replay_observed": true,
+    "duplicate_delivery_prevented": true
+  },
+  "all_validation_checks_passed": true,
+  "limitations": [
+    "The project uses a local fake email provider.",
+    "No real emails or external email APIs are used.",
+    "Metrics are held in application memory.",
+    "Production credentials and deployment are outside the assessment scope."
+  ]
+}
